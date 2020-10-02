@@ -40,6 +40,12 @@ class dky_savebasket extends CModule {
 
             // install dependencies
             $this->installDependencies();
+
+            CopyDirFiles(
+                    $_SERVER["DOCUMENT_ROOT"] . "/local/modules/" . $this->MODULE_ID . "/install/components",
+                    $_SERVER["DOCUMENT_ROOT"] . "/local/components/dky",
+                    true, true
+            );
         } catch (Exception $ex) {
             $GLOBALS["APPLICATION"]->ThrowException($ex->getMessage());
             $this->DoUninstall();
@@ -58,6 +64,12 @@ class dky_savebasket extends CModule {
 
         // uninstall module dependecies
         $this->uninstallDependencies();
+
+        DeleteDirFiles(
+                $_SERVER["DOCUMENT_ROOT"] . "/local/modules/" . $this->MODULE_ID . "/install/components",
+                $_SERVER["DOCUMENT_ROOT"] . "/local/components/dky"
+        );
+
         ModuleManager::unRegisterModule($this->MODULE_ID);
 
         return true;
