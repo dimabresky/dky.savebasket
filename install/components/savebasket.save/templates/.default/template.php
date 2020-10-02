@@ -1,0 +1,1 @@
+<a class="savebasket__btn" href="<?= $APPLICATION->GetCurPageParam("savebasket=Y", ['savebasket']) ?>">Сохранить корзину(оформить позже)</a>
